@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_08_021856) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_082423) do
   create_table "chatrooms", force: :cascade do |t|
     t.integer "owner_id", null: false
     t.integer "partner_id", null: false
@@ -19,6 +19,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_021856) do
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_chatrooms_on_owner_id"
     t.index ["partner_id"], name: "index_chatrooms_on_partner_id"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.text "content"
+    t.string "sender_id"
+    t.integer "chatroom_id", null: false
+    t.datetime "sent_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["chatroom_id"], name: "index_chats_on_chatroom_id"
+    t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,6 +49,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_021856) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "chatrooms", "owners"
-  add_foreign_key "chatrooms", "partners"
+  add_foreign_key "chatrooms", "users", column: "owner_id"
+  add_foreign_key "chatrooms", "users", column: "partner_id"
+  add_foreign_key "chats", "chatrooms"
+  add_foreign_key "chats", "users"
 end

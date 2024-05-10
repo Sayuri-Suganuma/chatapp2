@@ -4,11 +4,17 @@ class ChatroomsController < ApplicationController
 
   # GET /chatrooms or /chatrooms.json
   def index
-    @chatrooms = Chatroom.all
+    # @chatrooms = Chatroom.all
+    if current_user
+      @chatrooms = Chatroom.where(owner_id: current_user.id).or(Chatroom.where(partner_id: current_user.id))
+    else
+      redirect_to new_user_session_path, notice: "Please log in!!" 
+    end
   end
 
   # GET /chatrooms/1 or /chatrooms/1.json
   def show
+
   end
 
   # GET /chatrooms/new
@@ -22,20 +28,17 @@ class ChatroomsController < ApplicationController
 
   # POST /chatrooms or /chatrooms.json
   def create
-    @chatroom = Chatroom.new(chatroom_params)
-    # Rails.logger.debug "Received parameters: #{@chatroom.inspect}"
-    @chatroom.owner_id = current_user.id 
-    @chatroom.partner_id = params[:partner_id]
-    # @chatroom.partner_id = params[:partner_id]
-    # @chatroom.partner_id = User.find_by(id: params[:partner_id])&.id
+    @chatroom = Chatroom.new(
+      owner_id: chatroom_params[:owner_id],
+      partner_id: chatroom_params[:partner_id],
+      title: chatroom_params[:title]
+    )
 
     respond_to do |format|
-      # Rails.logger.debug("いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい#{params.inspect}")
       if @chatroom.save
         format.html { redirect_to chatroom_url(@chatroom), notice: "Chatroom was successfully created." }
         format.json { render :show, status: :created, location: @chatroom }
       else
-        # Rails.logger.debug @chatroom.errors.full_messages
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @chatroom.errors, status: :unprocessable_entity }
       end
