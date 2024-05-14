@@ -14,7 +14,24 @@ class ChatroomsController < ApplicationController
 
   # GET /chatrooms/1 or /chatrooms/1.json
   def show
+    @chat = Chat.new
+    @chatroom = Chatroom.find(params[:id])
+    @chats = @chatroom.chats
 
+    # @chats = chat.where(chatroom: id)
+  end
+
+  def add_comment
+    @chat = Chat.new(chat_params)
+    @chatroom = Chatroom.find(params[:chatroom_id])
+    @chat = @chatroom.chats.build(chat_params)
+    @chat.sender_id = current_user.id
+    Rails.logger.debug(@chat.errors.full_messages)
+    if @chat.save
+      redirect_to @chatroom
+    else
+      flash[:alert] = "Comment not found."    
+    end
   end
 
   # GET /chatrooms/new
@@ -74,6 +91,11 @@ class ChatroomsController < ApplicationController
     def set_chatroom
       @chatroom = Chatroom.find(params[:id])
     end
+
+    def chat_params
+      params.require(:chat).permit(:content, :sender_id, :chatroom_id)
+    end
+
 
     # Only allow a list of trusted parameters through.
     def chatroom_params

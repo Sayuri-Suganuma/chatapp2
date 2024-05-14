@@ -1,12 +1,45 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @chatroom %>
+
+<table>
+  <tr>
+    <th>Sender</th>
+    <th>Content</th>
+    <th>Sent At</th>
+  </tr>
+  <% @chats.each do |chat| %>
+    <tr>
+      <td><%= chat.user == current_user ? current_user.email : User.find(chat.chatroom.partner_id).email %></td>
+      <td><%= chat.content %></td>
+      <td><%= chat.sent_at.strftime("%m月%d日 %H:%M") %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= form_with(model: @chat, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.hidden_field :chatroom_id, value: @chatroom.id %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :sender_id, value: current_user.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Sending" %>
+  </div>
+<% end %>
 
 <div>
   <%= link_to "Edit this chatroom", edit_chatroom_path(@chatroom) %> |
   <%= link_to "Back to chatrooms", chatrooms_path %>
-
-  <%= link_to "Show this chatroom", new_chat_path %>
+  <%= link_to "Show this chatroom", new_chat_path(chatroom_id: @chatroom.id) %>
 
   <%= button_to "Destroy this chatroom", @chatroom, method: :delete %>
 </div>

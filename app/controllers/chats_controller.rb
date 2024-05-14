@@ -5,9 +5,10 @@ class ChatsController < ApplicationController
   def new
     @chat = Chat.new
     @chats = Chat.all
-    # @chats = current_user.chats
-    Rails.logger.debug("Current user: #{current_user.inspect}")
-    Rails.logger.debug(@chat.errors.full_messages)
+    @chatroom = Chatroom.find(params[:chatroom_id])
+    @chats = @chatroom.chats
+    # Rails.logger.debug("Current user: #{current_user.inspect}")
+    # Rails.logger.debug(@chat.errors.full_messages)
 
   end
 
