@@ -1,45 +1,69 @@
-<p style="color: green"><%= notice %></p>
 
 
-<table>
-  <tr>
-    <th>Sender</th>
-    <th>Content</th>
-    <th>Sent At</th>
-  </tr>
+<div class="chat-nav">
+    <ul style = "list-style-type:none;">
+      <li><div class="chat-title"><%= @chatroom.title %></div></li>
+      <li>
+        <%= link_to edit_chatroom_path(@chatroom), class: "button-edit" do %>
+          <ion-icon name="pencil-sharp"></ion-icon>
+        <% end %>
+      </li>
+      <li>
+        <%= button_to @chatroom, method: :delete, class: 'button-with-icon' do %>
+          <ion-icon name="trash"></ion-icon>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to chatrooms_path, class: "button-back" do %>
+          <ion-icon name="return-down-back"></ion-icon>
+        <% end %>
+      </li>
+
+    </ul>
+</div>
+
+
+<div class="wrapper">
+<div class="chat-container">
   <% @chats.each do |chat| %>
-    <tr>
-      <td><%= chat.user == current_user ? current_user.email : User.find(chat.chatroom.partner_id).email %></td>
-      <td><%= chat.content %></td>
-      <td><%= chat.sent_at.strftime("%m月%d日 %H:%M") %></td>
-    </tr>
+    <div class="<%= chat.user == current_user ? 'chat-me' : 'chat-you' %>">
+      <div class="<%= chat.user == current_user ? 'chat-me-says' : 'chat-you-says' %>">
+        <%= chat.content %>
+        </div>
+        <div class="<%= chat.user == current_user ? 'chat-me-time' : 'chat-you-time' %>">
+          <%= chat.sent_at.strftime("%m/%d %H:%M") %>
+        </div>
+        <div class="<%= chat.user == current_user ? 'chat-me-user' : 'chat-you-user' %>">
+          <%= chat.user == current_user ? current_user.email : User.find(chat.chatroom.partner_id).email %>
+        </div>
+
+    </div>
   <% end %>
-</table>
+</div>
 
-<%= form_with(model: @chat, local: true) do |form| %>
 
-  <div class="field">
-    <%= form.hidden_field :chatroom_id, value: @chatroom.id %>
-  </div>
+    <%= form_with(model: @chat, local: true) do |form| %>
 
-  <div class="field">
-    <%= form.hidden_field :sender_id, value: current_user.id %>
-  </div>
+      <div class="field">
+        <%= form.hidden_field :chatroom_id, value: @chatroom.id %>
+      </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+      <div class="field">
+        <%= form.hidden_field :sender_id, value: current_user.id %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit "Sending" %>
-  </div>
-<% end %>
 
-<div>
-  <%= link_to "Edit this chatroom", edit_chatroom_path(@chatroom) %> |
-  <%= link_to "Back to chatrooms", chatrooms_path %>
-  <%= link_to "Show this chatroom", new_chat_path(chatroom_id: @chatroom.id) %>
+  <footer>
+      <div class="actions">
+      <%= button_tag type: 'submit', class: 'button-sending' do %>
+        <span><ion-icon name="send"></ion-icon></span>
+    <% end %>
+      </div>
 
-  <%= button_to "Destroy this chatroom", @chatroom, method: :delete %>
+      <div class="field">
+        <%= form.text_area :content, class: 'chat-form' %>
+      </div>
+    </footer>
+  <% end %>
 </div>

@@ -1,0 +1,87 @@
+$base-color: rgb(250, 136, 205);
+$item-color: gray;
+$chat-color: rgb(181, 180, 180);
+
+.chat {
+
+  &-container {
+    width: 90%;
+  }
+
+  &-me,
+  &-you {
+    top: 120px;
+    position: relative;
+  }
+
+  &-me-time {
+    margin-top: 3px;
+    font-size: 11px;
+    display: flex;
+    color: $chat-color;
+  }
+
+  &-you-time {
+    margin-top: 3px;
+    font-size: 11px;
+    display: flex;
+    justify-content: flex-end;
+    right: 0;
+    color: $chat-color;
+  }
+
+  &-me-user {
+    margin-bottom: 12px;
+    font-size: 12px;
+    display: flex;
+    color: $chat-color;
+  }
+
+  &-you-user {
+    margin-bottom: 12px;
+    font-size: 12px;
+    display: flex;
+    justify-content: flex-end;
+    right: 0;
+    color: $chat-color;
+  }
+
+  &-me-says {
+    display: inline-block;
+    position: relative;
+    margin: 7px 0 0 0;
+    padding: 10px;
+    max-width: 250px;
+    min-width: 50px;
+    width: fit-content;
+    border-radius: 12px;
+    color: $item-color;
+    overflow: auto;
+    background: #edf1ee;
+
+    /* 子要素 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &-you-says {
+    display: block;
+    position: relative;
+    margin: 10px 0 0 auto;
+    justify-content: flex-end;
+    padding: 10px;
+    max-width: 250px;
+    min-width: 50px;
+    width: fit-content;
+    border-radius: 12px;
+    overflow: auto;
+    color: white;
+    background: $base-color;
+
+    /* 子要素 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}

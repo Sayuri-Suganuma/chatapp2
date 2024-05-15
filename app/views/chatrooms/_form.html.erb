@@ -13,20 +13,23 @@
 
   <div>
     <%= form.label :owner_id, style: "display: block" %>
-    <%= form.text_field :owner_id, value: current_user.id, readonly: true %>
+    <%= form.text_field :owner_id, value: current_user.id, 
+    readonly: true, class: 'form-line', style: 'text-align: center'; %>
   </div>
 
   <div>
     <%= form.label :partner_id, style: "display: block" %>
-    <%= form.text_field :partner_id %>
+    <%= form.text_field :partner_id, class: 'form-line' %>
   </div>
 
   <div>
     <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: 'form-line' %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= button_tag type: 'submit', class: 'button-sending' do %>
+      <ion-icon name="chatbubbles-sharp"></ion-icon>
+    <% end %>
   </div>
 <% end %>

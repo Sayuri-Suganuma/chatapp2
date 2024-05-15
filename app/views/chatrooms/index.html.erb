@@ -1,14 +1,16 @@
-<p style="color: green"><%= notice %></p>
 
-<h1>Chatrooms</h1>
 
-<div id="chatrooms">
-  <% @chatrooms.each do |chatroom| %>
-    <%= render chatroom %>
-    <p>
-      <%= link_to "Show this chatroom", chatroom %>
-    </p>
-  <% end %>
+<div class="wrapper">
+  <div class="title">Chatrooms</div>
+
+  <div id="chatrooms">
+    <% @chatrooms.each do |chatroom| %>
+      <%= render chatroom, title: chatroom.title %>
+      <p>
+        <%= link_to "Show this chatroom", chatroom, class: "button" %>
+      </p>
+    <% end %>
+  </div>
+
+  <%= link_to "New chatroom", new_chatroom_path, class: "button" %>
 </div>
-
-<%= link_to "New chatroom", new_chatroom_path %>

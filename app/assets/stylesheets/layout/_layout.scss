@@ -1,0 +1,24 @@
+@use 'header';
+@use 'button';
+@use 'form';
+@use 'chat';
+@use 'chat-nav';
+@use 'footer';
+
+$item-color: gray;
+
+.wrapper {
+  top: 80px;
+  width: 45%;
+  text-align: center;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  display: block;
+  margin: 85px 0 35px 0;
+  font-size: 30px;
+  color: $item-color;
+
+}
