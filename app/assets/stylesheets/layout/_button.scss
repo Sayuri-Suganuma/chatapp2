@@ -1,10 +1,11 @@
 $base-color: rgb(250, 136, 205);
 $item-color: gray;
 $button-color: white;
+$form-color: rgb(237, 236, 236);
 
 .button {
   display: inline-block;
-  padding: 15px 26px;
+  padding: 14px 25px;
   background-color: $base-color;
   text-decoration: none;
   border-radius: 6px;
@@ -91,5 +92,57 @@ $button-color: white;
     position: fixed;
     bottom: 20px;
     z-index: 998;
+  }
+}
+
+.chatroom-create-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 15px 5px 22px;
+  margin-top: 28px;
+  background-color: $base-color;
+  border-radius: 6px;
+  transition: .3s;
+  border: none;
+  cursor: pointer;
+
+  & p {
+    color: white;
+    padding-top: 0;
+    margin-right: 6px;
+  }
+
+  ion-icon {
+    display: flex;
+    width: 30px;
+    height: 34px;
+    color: white;
+  }
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.back-chatroom {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-chatroom-button {
+  display: inline-block;
+  padding: 22px 18px;
+  background-color: $form-color;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: .3s;
+  line-height: 1;
+  font-size: 13px;
+  color: $item-color;
+  margin-left: 83px;
+  margin-top: -5px;
+
+  &:hover {
+    opacity: 0.6;
   }
 }

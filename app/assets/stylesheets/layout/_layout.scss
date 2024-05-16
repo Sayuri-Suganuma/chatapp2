@@ -4,6 +4,7 @@
 @use 'chat';
 @use 'chat-nav';
 @use 'footer';
+@use 'index';
 
 $item-color: gray;
 
@@ -17,8 +18,7 @@ $item-color: gray;
 
 .title {
   display: block;
-  margin: 85px 0 35px 0;
+  margin: 120px 0 40px 0;
   font-size: 30px;
   color: $item-color;
-
 }

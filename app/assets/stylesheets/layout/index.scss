@@ -1,0 +1,17 @@
+$form-color: rgb(237, 236, 236);
+
+.index-container {
+  display: flex;
+  background-color: $form-color;
+  padding: 4px 10px;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.index-item {
+  line-height: 1;
+  margin-left: 25px;
+  padding: 0;
+}
