@@ -1,0 +1,15 @@
+Rails.application.config.dartsass.builds = {
+  "foundation/foundation.scss"  => "foundation/foundation.css",
+  "foundation/base.scss"  => "foundation/base.css",
+  "layout/index.scss"  => "layout/index.css",
+  "layout/header.scss"  => "layout/header.css",
+  "layout/form.scss"  => "layout/form.css",
+  "layout/footer.scss"  => "layout/footer.css",
+  "layout/chat.scss"  => "layout/chat.css",
+  "layout/chat-nav.scss"  => "layout/chat-nav.css",
+  "layout/button.scss"  => "layout/button.css",
+  "global/notice.scss"  => "global/notice.css",
+  "global/global.scss"  => "global/global.css",
+  "global/font-family.scss"  => "global/font-family.css",
+  "global/color.scss"  => "global/color.css",
+}
