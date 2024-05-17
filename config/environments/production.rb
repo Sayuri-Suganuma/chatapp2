@@ -93,9 +93,6 @@ Rails.application.configure do
 
   config.active_record.sqlite3_production_warning = false
 
-  config.action_mailer.default_url_options = { host: 'dev-sugaapp-be.sakuramobile.jp', port: 443 }
-
-  config.action_mailer.delivery_method = :letter_opener_web
 
   host = 'dev-sugaapp-be.sakuramobile.jp'
   Rails.application.routes.default_url_options[:host] = host
