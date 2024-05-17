@@ -62,7 +62,11 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  #開発環境で利用する時に起用
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  #本番環境で一時的にdevelopで起動用
+  config.action_mailer.default_url_options = { host: 'dev-sugaapp-be.sakuramobile.jp', protocol: 'https' }
 
   config.action_mailer.delivery_method = :letter_opener_web
 
