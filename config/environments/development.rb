@@ -70,6 +70,7 @@ Rails.application.configure do
   Rails.application.routes.default_url_options[:host] = host
 
 
+  config.hosts << "dev-sugaapp-be.sakuramobile.jp"
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
