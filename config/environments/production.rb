@@ -93,13 +93,17 @@ Rails.application.configure do
 
   config.active_record.sqlite3_production_warning = false
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'dev-sugaapp-be.sakuramobile.jp', port: 443 }
+
+  config.action_mailer.delivery_method = :letter_opener_web
+
+  host = 'dev-sugaapp-be.sakuramobile.jp'
+  Rails.application.routes.default_url_options[:host] = host
 
   config.hosts << "dev-sugaapp-be.sakuramobile.jp"
 
 
-  host = 'localhost'
-  Rails.application.routes.default_url_options[:host] = host
+
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
