@@ -95,6 +95,11 @@ Rails.application.configure do
 
 
   config.hosts << "dev-sugaapp-be.sakuramobile.jp"
+
+
+  host = 'localhost'
+  Rails.application.routes.default_url_options[:host] = host
+
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
